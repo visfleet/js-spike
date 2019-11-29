@@ -10,31 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_004818) do
+ActiveRecord::Schema.define(version: 2019_11_29_015807) do
 
   create_table "custom_fields", force: :cascade do |t|
-    t.string "name"
-    t.string "value"
-    t.string "field_type"
+    t.string "name", null: false
+    t.string "value", null: false
+    t.string "field_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "job_id"
+    t.integer "job_id", null: false
     t.index ["job_id"], name: "index_custom_fields_on_job_id"
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "phone_number"
-    t.string "address"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone_number", null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string "template_name"
-    t.string "planned_start_time"
-    t.string "state"
+    t.string "template_name", null: false
+    t.datetime "planned_start_time"
+    t.string "state", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "customer_id"
@@ -44,18 +44,18 @@ ActiveRecord::Schema.define(version: 2019_11_29_004818) do
   end
 
   create_table "steps", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
+    t.string "name", null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "job_id"
+    t.integer "job_id", null: false
     t.index ["job_id"], name: "index_steps_on_job_id"
   end
 
   create_table "templates", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "planned_start_time"
-    t.string "state"
+    t.string "state", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "customer_id"
@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 2019_11_29_004818) do
   end
 
   create_table "workers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "phone_number"
-    t.string "address"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone_number", null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

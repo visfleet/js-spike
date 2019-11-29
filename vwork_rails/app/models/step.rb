@@ -3,11 +3,11 @@
 # Table name: steps
 #
 #  id         :integer          not null, primary key
-#  address    :string
-#  name       :string
+#  address    :string           not null
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  job_id     :integer
+#  job_id     :integer          not null
 #
 # Indexes
 #

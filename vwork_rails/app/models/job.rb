@@ -3,9 +3,9 @@
 # Table name: jobs
 #
 #  id                 :integer          not null, primary key
-#  planned_start_time :string
-#  state              :string
-#  template_name      :string
+#  planned_start_time :datetime
+#  state              :string           not null
+#  template_name      :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  customer_id        :integer

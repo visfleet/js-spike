@@ -3,10 +3,10 @@
 # Table name: workers
 #
 #  id           :integer          not null, primary key
-#  address      :string
-#  email        :string
-#  name         :string
-#  phone_number :string
+#  address      :string           not null
+#  email        :string           not null
+#  name         :string           not null
+#  phone_number :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

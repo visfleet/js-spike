@@ -3,12 +3,12 @@
 # Table name: custom_fields
 #
 #  id         :integer          not null, primary key
-#  field_type :string
-#  name       :string
-#  value      :string
+#  field_type :string           not null
+#  name       :string           not null
+#  value      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  job_id     :integer
+#  job_id     :integer          not null
 #
 # Indexes
 #
