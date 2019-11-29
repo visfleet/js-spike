@@ -11,4 +11,6 @@
 #
 
 class Job < ApplicationRecord
+  has_many :custom_fields, inverse_of: :job, dependent: :destroy
+  has_many :steps, inverse_of: :job, dependent: :destroy
 end

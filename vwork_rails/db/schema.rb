@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_000957) do
+ActiveRecord::Schema.define(version: 2019_11_29_002134) do
 
   create_table "custom_fields", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_11_29_000957) do
     t.string "field_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "job_id"
+    t.index ["job_id"], name: "index_custom_fields_on_job_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -42,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_11_29_000957) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "job_id"
+    t.index ["job_id"], name: "index_steps_on_job_id"
   end
 
   create_table "templates", force: :cascade do |t|
