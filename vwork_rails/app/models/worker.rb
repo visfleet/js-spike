@@ -12,4 +12,6 @@
 #
 
 class Worker < ApplicationRecord
+  has_many :jobs, inverse_of: :worker, dependent: :nullify
+  has_many :templates, inverse_of: :worker, dependent: :nullify
 end

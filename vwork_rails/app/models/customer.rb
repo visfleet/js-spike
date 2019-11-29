@@ -12,4 +12,6 @@
 #
 
 class Customer < ApplicationRecord
+  has_many :jobs, inverse_of: :customer, dependent: :nullify
+  has_many :templates, inverse_of: :customer, dependent: :nullify
 end
