@@ -1,0 +1,7 @@
+flags:
+  vwork_react_app:
+    paths:
+      - vwork_react_app
+  vwork_rails:
+    paths:
+      - vwork_rails
