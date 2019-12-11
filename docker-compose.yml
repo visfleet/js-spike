@@ -7,15 +7,8 @@ services:
       - "3000"
     volumes:
       - "vwork_rails_data:/vwork_rails/data"
-    command: "bundle exec rails server"
-  vwork_rails_migrate:
-    build: .
-    restart: on-failure
-    volumes:
-      - "vwork_rails_data:/vwork_rails/data"
     environment:
       - 'DISABLE_DATABASE_ENVIRONMENT_CHECK=1'
-    command: "bundle exec rake db:reset"
-    # command: "bundle exec rake db:prepare"
+    command: bin/reset_and_server.sh
 volumes:
   vwork_rails_data: {}
