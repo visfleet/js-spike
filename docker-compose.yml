@@ -13,6 +13,9 @@ services:
     restart: on-failure
     volumes:
       - "vwork_rails_data:/vwork_rails/data"
-    command: "bundle exec rake db:prepare"
+    environment:
+      - 'DISABLE_DATABASE_ENVIRONMENT_CHECK=1'
+    command: "bundle exec rake db:reset"
+    # command: "bundle exec rake db:prepare"
 volumes:
   vwork_rails_data: {}
