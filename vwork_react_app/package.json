@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "codecov": "^3.6.1"
+    "codecov": "^3.6.1",
+    "typescript": "^3.7.3"
   }
 }
