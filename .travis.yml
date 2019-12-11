@@ -1,0 +1,10 @@
+language: node_js
+node_js: 12
+cache:
+  directories:
+    - vwork_react_app
+scripts:
+  - cd vwork_react_app && yarn install --frozen-lockfile
+  - cd vwork_react_app && yarn lint
+  - cd vwork_react_app && yarn test
+
