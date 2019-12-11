@@ -1,12 +1,19 @@
 import React from "react";
+import { ApolloProvider } from "@apollo/react-hooks";
 
 import ViewPort from "./controls/ViewPort";
+import apolloClient from "./services/apolloClient";
+import JobList from "./components/JobList/JobList";
 
 function App() {
   return (
-    <div className="App">
-      <ViewPort />
-    </div>
+    <>
+      <ApolloProvider client={apolloClient}>
+        <ViewPort>
+          <JobList />
+        </ViewPort>
+      </ApolloProvider>
+    </>
   );
 }
 

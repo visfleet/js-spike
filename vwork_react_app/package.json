@@ -14,11 +14,13 @@
     "apollo-link-state": "^0.4.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
+    "http-proxy-middleware": "^0.20.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
+    "react-scripts": "3.3.0",
     "react-test-renderer": "^16.12.0",
     "yarn": "^1.21.0"
   },
@@ -34,7 +36,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

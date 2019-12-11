@@ -23,6 +23,9 @@ export default function ViewPort({ navItems = [], children }) {
           </div>
         </div>
       </div>
+      <div className="container" style={{ paddingTop: 50 }}>
+        {children}
+      </div>
     </>
   );
 }

@@ -1,18 +1,31 @@
 class GraphqlController < ApplicationController
+  protect_from_forgery with: :null_session
   def execute
-    variables = ensure_hash(params[:variables])
-    query = params[:query]
-    operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      controller: self
     }
-    result = VworkRailsSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
-    render json: result
-  rescue StandardError => e
-    raise e unless Rails.env.development?
 
-    handle_error_in_development e
+    result =
+      if params[:_json]
+        queries = params[:_json].map do |param|
+          {
+            query: param[:query],
+            operation_name: param[:operationName],
+            variables: ensure_hash(param[:variables]),
+            context: context
+          }
+        end
+        VworkRailsSchema.multiplex(queries)
+      else
+        FileManagementworkRailsSchemaystemSchema.execute(
+          params[:query],
+          operation_name: params[:operationName],
+          variables: ensure_hash(params[:variables]),
+          context: context
+        )
+      end
+
+    render json: result
   end
 
   private
