@@ -6,7 +6,8 @@ cache:
 scripts:
   - cd vwork_react_app && yarn install --frozen-lockfile
   - cd vwork_react_app && yarn lint
-  - cd vwork_react_app && yarn test
+  - cd vwork_react_app && yarn test --coverage
+  - cd vwork_react_app && codecov
 env:
   # CODECOV_TOKEN
   - secure: "QKQhpE1uDZ69nG5FLKrpLAX4CZSVG+ItKfqfT9epBI71cK2tE6z3JHVXJxtOXLnvN5bCnAHWHw/SzAzoXs/CxyBWlfFj2F7ECO36tOWzgAWaz6Gc4x+PSqx57jZQDFedsLZLOKp3oPaTpPyx/eeWRSrVCZfpvt4uYBW36f1DxA8lKuRm//UcdACsxTpj4jXxu5yTJP3Imb2HqE06JEeGx2jIe0N+LVpnynXyhbF5N1e6Yr3EzNimBni7yCvQikC42d4kbv6X0gwO0/sRHpQJ9lyCuQLWX6BguXbswDqOfWEn5T/JOpFs8J6NIFTm62wfYXlqjr4GbbqLHP6NK30oXE1hZOQqwvw1dNVfycw9PSGnZDLLROvtC9HLF1vAKGzLd3jTWGFiXkMF9NfseNgs0aH7/VNgAALUAAzvcpyvVwXrMUQkpRQOQ6bt5l4TjWz7cpmBuChTv2Fy1CKcVPNfKHjQCVGS+iw5XMx1BcRq95DYqf7ToBN7Uyjl+Oii3f0z0YNPkFdZSXcSiNpcvqsvi/2CNNa6RweXeT/snYriyboQKfDhUBnfexGLjyxn75EeLPnsfHsHngMA3yiWewz4TW43Be47WHBMBc2Iwd8/gx1idEOyjttdC6ITcGQUo//8gxTYVGzObxt+jKhJvNjTxDY42tkb1BLcd3HfvpDEU3M="
