@@ -20,9 +20,9 @@ end
   Job.create!(
     customer: [*customers, nil].sample,
     worker: [workers.sample, nil].sample,
-    template_name: '',
+    template_name: 'Delivery Template',
     state: 'DRAFT',
-    planned_start_time: Faker::Time.forward(5),
+    planned_start_time: Faker::Time.forward(days: 5),
     steps: 3.times.map do |step_index|
       Step.new(
         name: "Step #{step_index + 1}",
