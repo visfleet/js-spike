@@ -1,8 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import JobList from "./JobList";
 import useData from "../../hooks/useData";
+
+import JobList from "./JobList";
 
 jest.mock("../../hooks/useData");
 

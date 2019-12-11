@@ -1,6 +1,12 @@
 module.exports = {
-  extends: ["react-app"],
+  extends: ["react-app", "plugin:import/recommended"],
   rules: {
-    "jsx-a11y/anchor-is-valid": "off"
+    "jsx-a11y/anchor-is-valid": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always"
+      }
+    ]
   }
 };

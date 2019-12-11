@@ -1,5 +1,6 @@
-import useData from "./useData";
 import { useQuery } from "@apollo/react-hooks";
+
+import useData from "./useData";
 
 jest.mock("@apollo/react-hooks");
 
