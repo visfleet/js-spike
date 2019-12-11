@@ -1,0 +1,13 @@
+.git
+/vwork_rails/db/*.sqlite3
+/vwork_rails/db/*.sqlite3-journal
+!/vwork_rails/db/production.sqlite3
+/vwork_rails/tmp
+/vwork_rails/coverage
+/vwork_rails/data
+
+/vwork_react_app/coverage
+/vwork_react_app/build
+/vwork_react_app/node_modules
+
+*.log

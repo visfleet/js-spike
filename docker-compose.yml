@@ -1,0 +1,18 @@
+version: "3"
+services:
+  vwork_rails_server:
+    build: .
+    restart: always
+    ports: 
+      - "3000"
+    volumes:
+      - "vwork_rails_data:/vwork_rails/data"
+    command: "bundle exec rails server"
+  vwork_rails_migrate:
+    build: .
+    restart: on-failure
+    volumes:
+      - "vwork_rails_data:/vwork_rails/data"
+    command: "bundle exec rake db:prepare"
+volumes:
+  vwork_rails_data: {}
