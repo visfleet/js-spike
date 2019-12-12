@@ -10,10 +10,12 @@ import clientSchema from "./clientSchema";
 const cache = new InMemoryCache();
 
 async function initApolloClient() {
-  await persistCache({
-    cache,
-    storage: window.localStorage,
-  });
+  if (process.env.NODE_ENV === "production") {
+    await persistCache({
+      cache,
+      storage: window.localStorage,
+    });
+  }
 }
 
 const apolloClient = new ApolloClient({
