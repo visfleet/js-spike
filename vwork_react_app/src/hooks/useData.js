@@ -5,7 +5,7 @@ export default function useData(query, variables, options) {
     variables,
     fetchPolicy: "cache-and-network",
     partialRefetch: true,
-    ...options
+    ...options,
   });
 
   return data;

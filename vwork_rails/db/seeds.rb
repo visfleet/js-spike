@@ -16,11 +16,20 @@ workers = 5.times.map do
   )
 end
 
+templates = 5.times.map do
+  Template.create!(
+    customer: [*customers, nil].sample,
+    worker: [workers.sample, nil].sample,
+    name: Faker::Company.buzzword,
+    planned_start_time: Faker::Time.forward(days: 5)
+  )
+end
+
 50.times.map do
   Job.create!(
     customer: [*customers, nil].sample,
     worker: [workers.sample, nil].sample,
-    template_name: 'Delivery Template',
+    template_name: [*templates, nil].sample.try(&:name) || '',
     state: 'DRAFT',
     planned_start_time: Faker::Time.forward(days: 5),
     steps: 3.times.map do |step_index|

@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  name               :string           not null
 #  planned_start_time :datetime
-#  state              :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  customer_id        :integer

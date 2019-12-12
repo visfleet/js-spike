@@ -26,5 +26,10 @@ module Types
     def jobs
       Job.all
     end
+
+    field :templates, [TemplateType], null: false
+    def templates
+      Template.all
+    end
   end
 end

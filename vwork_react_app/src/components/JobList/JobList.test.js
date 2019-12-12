@@ -17,9 +17,9 @@ it("renders with data", () => {
     jobs: [
       {
         id: 1,
-        templateName: "foo"
-      }
-    ]
+        templateName: "foo",
+      },
+    ],
   });
   shallow(<JobList />);
 });

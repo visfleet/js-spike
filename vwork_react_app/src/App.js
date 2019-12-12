@@ -1,21 +1,32 @@
 import React from "react";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { HashRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import ViewPort from "./controls/ViewPort";
-import apolloClient from "./services/apolloClient";
-import Routes from "./components/Routes/Routes";
+import JobList from "./components/JobList/JobList";
+import Schedule from "./components/Schedule/Schedule";
+import Map from "./components/Map/Map";
+import Settings from "./components/Settings/Settings";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
   return (
     <>
-      <ApolloProvider client={apolloClient}>
-        <HashRouter>
-          <ViewPort>
-            <Routes />
-          </ViewPort>
-        </HashRouter>
-      </ApolloProvider>
+      <ViewPort
+        navItems={[
+          { title: "Schedule", href: "/#/schedule" },
+          { title: "Jobs", href: "/#/jobs" },
+          { title: "Map", href: "/#/map" },
+          { title: "Settings", href: "/#/admin" },
+        ]}
+      >
+        <Switch>
+          <Route exact path="/jobs" component={JobList} />
+          <Route exact path="/schedule" component={Schedule} />
+          <Route exact path="/map" component={Map} />
+          <Route exact path="/admin" component={Settings} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </ViewPort>
     </>
   );
 }

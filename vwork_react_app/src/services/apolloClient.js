@@ -12,7 +12,7 @@ const cache = new InMemoryCache();
 async function initApolloClient() {
   await persistCache({
     cache,
-    storage: window.localStorage
+    storage: window.localStorage,
   });
 }
 
@@ -20,14 +20,14 @@ const apolloClient = new ApolloClient({
   link: ApolloLink.from([
     withClientState({
       cache,
-      ...clientSchema
+      ...clientSchema,
     }),
     new BatchHttpLink({
       fetch,
-      batchMax: 50
-    })
+      batchMax: 50,
+    }),
   ]),
-  cache
+  cache,
 });
 
 export { initApolloClient };

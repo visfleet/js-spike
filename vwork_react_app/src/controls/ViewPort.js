@@ -1,6 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
+import classNames from "classnames";
 
 export default function ViewPort({ navItems = [], children }) {
+  const { pathname } = useLocation();
+
   return (
     <>
       <div className="navbar navbar-inverse navbar-fixed-top">
@@ -12,7 +17,12 @@ export default function ViewPort({ navItems = [], children }) {
             <div className="nav-collapse collapse">
               <ul className="nav">
                 {navItems.map(navItem => (
-                  <li className="active">
+                  <li
+                    key={navItem.title}
+                    className={classNames({
+                      active: `/#${pathname}`.startsWith(navItem.href),
+                    })}
+                  >
                     <a href={navItem.href} key={navItem.title}>
                       {navItem.title}
                     </a>
@@ -29,3 +39,13 @@ export default function ViewPort({ navItems = [], children }) {
     </>
   );
 }
+
+ViewPort.propTypes = {
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequire,
+      title: PropTypes.string.isRequire,
+    }),
+  ).isRequired,
+  children: PropTypes.any.isRequired,
+};

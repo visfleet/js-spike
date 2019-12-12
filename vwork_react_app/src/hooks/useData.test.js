@@ -4,22 +4,12 @@ import useData from "./useData";
 
 jest.mock("@apollo/react-hooks");
 
-describe("when loaded", () => {
-  beforeEach(() => {
-    useQuery.mockReturnValue({ data: "foo" });
-  });
-
-  it("returns data", () => {
-    expect(useData()).toEqual("foo");
-  });
+it("returns data when loaded", () => {
+  useQuery.mockReturnValue({ data: "foo" });
+  expect(useData()).toEqual("foo");
 });
 
-describe("when not loaded", () => {
-  beforeEach(() => {
-    useQuery.mockReturnValue({ data: null });
-  });
-
-  it("returns data", () => {
-    expect(useData()).toEqual(null);
-  });
+it("returns data when not loaded", () => {
+  useQuery.mockReturnValue({ data: null });
+  expect(useData()).toEqual(null);
 });
