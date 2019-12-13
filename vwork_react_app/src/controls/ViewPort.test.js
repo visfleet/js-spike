@@ -11,5 +11,19 @@ jest.mock("react-router-dom", () => ({
 }));
 
 it("renders", () => {
-  shallow(<ViewPort navItems={[]} children={<>TODO</>} />);
+  shallow(
+    <ViewPort
+      navItems={[
+        {
+          title: "Jobs",
+          href: "/#/jobs",
+        },
+        {
+          title: "Settings",
+          href: "/#/admin",
+        },
+      ]}
+      children={<>TODO</>}
+    />,
+  );
 });
