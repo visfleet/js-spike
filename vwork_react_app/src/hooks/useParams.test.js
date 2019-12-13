@@ -2,13 +2,19 @@ import useParams from "./useParams";
 
 jest.mock("react-router-dom", () => ({
   useLocation: () => ({
-    search: "?foo=a&faa=b",
+    pathname: "/pathname",
+    search: "?param1=a",
   }),
   useHistory: () => ({
-    push: () => {},
+    push: jest.fn(),
   }),
 }));
 
-it("returns params", () => {
-  expect(useParams().foo).toEqual("a");
+it("returns", () => {
+  const { param1, pathnameForParams, setParams } = useParams();
+  expect(param1).toEqual("a");
+  expect(pathnameForParams({ param2: "b" })).toEqual(
+    "/pathname?param1=a&param2=b",
+  );
+  setParams({ param2: "b" });
 });
