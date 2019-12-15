@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import { initApolloClient } from "../services/apolloClient";
+import ApplicationLoader from "../loaders/ApplicationLoader";
 
 export default function InitProvider({ children }) {
   const [inited, initedSet] = useState(false);
@@ -16,7 +17,7 @@ export default function InitProvider({ children }) {
     [],
   );
 
-  return <>{inited ? children : <>TODO: loading</>}</>;
+  return <>{inited ? children : <ApplicationLoader />}</>;
 }
 
 InitProvider.propTypes = {
