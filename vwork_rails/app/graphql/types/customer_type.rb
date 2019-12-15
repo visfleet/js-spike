@@ -8,5 +8,7 @@ module Types
     field :phone_number, String, null: false
     field :created_at, ISO8601DateTime, null: false
     field :updated_at, ISO8601DateTime, null: false
+
+    field :jobs, [JobType], null: false
   end
 end

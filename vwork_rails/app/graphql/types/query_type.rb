@@ -27,6 +27,11 @@ module Types
       Job.all
     end
 
+    field :customers, [CustomerType], null: false
+    def customers
+      Customer.all
+    end
+
     field :templates, [TemplateType], null: false
     def templates
       Template.all

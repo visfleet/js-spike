@@ -5,6 +5,7 @@ import ViewPort from "./controls/ViewPort";
 import JobList from "./components/JobList/JobList";
 import Schedule from "./components/Schedule/Schedule";
 import Map from "./components/Map/Map";
+import CustomerList from "./components/Customers/CustomerList";
 import Settings from "./components/Settings/Settings";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
@@ -16,6 +17,7 @@ function App() {
           { title: "Schedule", href: "/#/schedule" },
           { title: "Jobs", href: "/#/jobs" },
           { title: "Map", href: "/#/map" },
+          { title: "Customers", href: "/#/customers" },
           { title: "Settings", href: "/#/admin" },
         ]}
       >
@@ -24,6 +26,7 @@ function App() {
           <Route exact path="/schedule" component={Schedule} />
           <Route exact path="/map" component={Map} />
           <Route exact path="/admin" component={Settings} />
+          <Route exact path="/customers" component={CustomerList} />
           <Route component={PageNotFound} />
         </Switch>
       </ViewPort>
