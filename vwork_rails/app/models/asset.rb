@@ -22,4 +22,6 @@
 
 class Asset < ApplicationRecord
   belongs_to :customer, inverse_of: :assets, optional: true
+  has_many :job_assets, inverse_of: :asset, dependent: :destroy
+  has_many :jobs, through: :job_assets
 end

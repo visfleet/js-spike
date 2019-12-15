@@ -7,7 +7,7 @@ customers = 10.times.map do
   )
 end
 
-20.times.map do
+assets = 20.times.map do
   Asset.create!({
     name: Faker::Commerce.product_name,
     address: Faker::Address.full_address,
@@ -52,6 +52,7 @@ end
         address: Faker::Address.full_address
       )
     end,
+    assets: [*assets, *(20.times.map { nil })].sample(3).compact,
     custom_fields: 3.times.map do |custom_field_index|
       CustomField.new(
         name: "Custom Field #{custom_field_index + 1}",

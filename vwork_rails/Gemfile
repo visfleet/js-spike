@@ -18,7 +18,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'annotate'
+  # https://github.com/ctran/annotate_models/issues/620
+  gem 'annotate', git: 'https://github.com/ctran/annotate_models.git', branch: :develop
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop'
   gem 'spring'

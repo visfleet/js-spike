@@ -13,5 +13,6 @@ module Types
 
     field :steps, [StepType], null: false
     field :custom_fields, [CustomFieldType], null: false
+    field :assets, [AssetType], null: false
   end
 end
