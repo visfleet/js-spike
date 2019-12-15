@@ -21,10 +21,16 @@ module Types
     define_record_field(Step, StepType)
     define_record_field(Worker, WorkerType)
     define_record_field(Customer, CustomerType)
+    define_record_field(Asset, AssetType)
 
     field :jobs, [JobType], null: false
     def jobs
       Job.all
+    end
+
+    field :assets, [AssetType], null: false
+    def assets
+      Asset.all
     end
 
     field :customers, [CustomerType], null: false

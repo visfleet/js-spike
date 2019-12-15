@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_224015) do
+ActiveRecord::Schema.define(version: 2019_12_15_221215) do
+
+  create_table "assets", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "asset_model", null: false
+    t.string "serial", null: false
+    t.decimal "cost", precision: 10, scale: 10
+    t.integer "customer_id"
+    t.decimal "longitude", precision: 10, scale: 5
+    t.decimal "latitude", precision: 10, scale: 5
+    t.text "notes", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_assets_on_customer_id"
+  end
 
   create_table "custom_fields", force: :cascade do |t|
     t.string "name", null: false
