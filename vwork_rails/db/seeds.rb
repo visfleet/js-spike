@@ -7,6 +7,20 @@ customers = 10.times.map do
   )
 end
 
+20.times.map do
+  Asset.create!({
+    name: Faker::Commerce.product_name,
+    address: Faker::Address.full_address,
+    asset_model: Faker::Vehicle.model,
+    notes: Faker::Lorem.paragraph,
+    serial: Faker::Vehicle.vin,
+    customer: [*customers, nil, nil, nil].sample
+  }.merge([{}, {
+    longitude: Faker::Address.longitude,
+    latitude: Faker::Address.latitude
+  }].sample))
+end
+
 workers = 5.times.map do
   Worker.create!(
     name: Faker::Name.name,

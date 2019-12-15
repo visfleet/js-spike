@@ -17,7 +17,7 @@ class GraphqlController < ApplicationController
         end
         VworkRailsSchema.multiplex(queries)
       else
-        FileManagementworkRailsSchemaystemSchema.execute(
+        VworkRailsSchema.execute(
           params[:query],
           operation_name: params[:operationName],
           variables: ensure_hash(params[:variables]),
