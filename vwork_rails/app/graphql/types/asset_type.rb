@@ -16,5 +16,6 @@ module Types
     field :updated_at, ISO8601DateTime, null: false
 
     field :customer, CustomerType, null: true
+    field :jobs, [JobType], null: false
   end
 end

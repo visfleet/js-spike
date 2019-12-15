@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_221215) do
+ActiveRecord::Schema.define(version: 2019_12_15_231819) do
 
   create_table "assets", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2019_12_15_221215) do
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "job_assets", force: :cascade do |t|
+    t.integer "job_id", null: false
+    t.integer "asset_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asset_id"], name: "index_job_assets_on_asset_id"
+    t.index ["job_id"], name: "index_job_assets_on_job_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -87,4 +96,6 @@ ActiveRecord::Schema.define(version: 2019_12_15_221215) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "job_assets", "assets"
+  add_foreign_key "job_assets", "jobs"
 end

@@ -20,6 +20,8 @@
 class Job < ApplicationRecord
   has_many :custom_fields, inverse_of: :job, dependent: :destroy
   has_many :steps, inverse_of: :job, dependent: :destroy
+  has_many :job_assets, inverse_of: :job, dependent: :destroy
+  has_many :assets, through: :job_assets
   belongs_to :customer, optional: true, inverse_of: :jobs
   belongs_to :worker, optional: true, inverse_of: :jobs
 end
