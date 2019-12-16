@@ -18,3 +18,18 @@ it("renders", () => {
     />,
   );
 });
+
+it("renders without rows", () => {
+  shallow(
+    <AppTable
+      columns={[
+        {
+          title: "Column 1",
+        },
+        {
+          title: "Column 2",
+        },
+      ]}
+    />,
+  );
+});
