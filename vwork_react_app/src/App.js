@@ -7,6 +7,7 @@ import Schedule from "./components/Schedule/Schedule";
 import Map from "./components/Map/Map";
 import CustomerList from "./components/Customers/CustomerList";
 import Settings from "./components/Settings/Settings";
+import AssetList from "./components/Assets/AssetList";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           { title: "Jobs", href: "/#/jobs" },
           { title: "Map", href: "/#/map" },
           { title: "Customers", href: "/#/customers" },
+          { title: "Assets", href: "/#/assets" },
           { title: "Settings", href: "/#/admin" },
         ]}
       >
@@ -27,6 +29,7 @@ function App() {
           <Route exact path="/map" component={Map} />
           <Route exact path="/admin" component={Settings} />
           <Route exact path="/customers" component={CustomerList} />
+          <Route exact path="/assets" component={AssetList} />
           <Route component={PageNotFound} />
         </Switch>
       </ViewPort>
