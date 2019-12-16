@@ -33,6 +33,11 @@ module Types
       Asset.all
     end
 
+    field :assets_connection, AssetType.connection_type, null: false
+    def assets_connection
+      Asset.all
+    end
+
     field :customers, [CustomerType], null: false
     def customers
       Customer.all

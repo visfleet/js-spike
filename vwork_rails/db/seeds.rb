@@ -1,4 +1,5 @@
-customers = 10.times.map do
+customers = 10.times.map do |i|
+  puts "Creating Customer #{i}"
   Customer.create!(
     name: Faker::Name.name,
     address: Faker::Address.full_address,
@@ -7,7 +8,8 @@ customers = 10.times.map do
   )
 end
 
-assets = 20.times.map do
+assets = 20.times.map do |i|
+  puts "Creating Asset #{i}"
   Asset.create!({
     name: Faker::Commerce.product_name,
     address: Faker::Address.full_address,
@@ -21,7 +23,8 @@ assets = 20.times.map do
   }].sample))
 end
 
-workers = 5.times.map do
+workers = 5.times.map do |i|
+  puts "Creating Worker #{i}"
   Worker.create!(
     name: Faker::Name.name,
     address: Faker::Address.full_address,
@@ -30,7 +33,8 @@ workers = 5.times.map do
   )
 end
 
-templates = 5.times.map do
+templates = 5.times.map do |i|
+  puts "Creating Template #{i}"
   Template.create!(
     customer: [*customers, nil].sample,
     worker: [workers.sample, nil].sample,
@@ -39,7 +43,8 @@ templates = 5.times.map do
   )
 end
 
-50.times.map do
+50.times.map do |i|
+  puts "Creating Job #{i}"
   Job.create!(
     customer: [*customers, nil].sample,
     worker: [workers.sample, nil].sample,
