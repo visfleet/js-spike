@@ -26,13 +26,15 @@ export default function CustomerList() {
         },
         {
           title: "ID",
+          span: 1,
         },
         {
           title: "Address",
+          span: 4,
         },
-        { title: "Jobs" },
+        { title: "Jobs", span: 1 },
       ]}
-      rows={(data?.customers || []).map(customer => ({
+      rows={data?.customers.map(customer => ({
         key: customer.id,
         values: [
           customer.name,
