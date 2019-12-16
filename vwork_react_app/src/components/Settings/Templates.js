@@ -30,14 +30,18 @@ export default function Templates() {
         columns={[
           {
             title: "Name",
+            span: 4,
           },
           {
             title: "Customer",
           },
+          {
+            title: "Created At",
+          },
         ]}
         rows={data?.templates.map(template => ({
           key: template.id,
-          values: [template.name, template.customer?.name],
+          values: [template.name, template.customer?.name, template.createdAt],
         }))}
       />
     </>
