@@ -21,7 +21,7 @@ export default function DevSettings() {
     <div
       className="well"
       style={{
-        position: "absolute",
+        position: "fixed",
         left: 10,
         bottom: 10,
         margin: 0,
