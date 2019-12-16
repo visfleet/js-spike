@@ -9,6 +9,7 @@ import CustomerList from "./components/Customers/CustomerList";
 import Settings from "./components/Settings/Settings";
 import AssetList from "./components/Assets/AssetList";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import DevSettings from "./DevSettings";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route component={PageNotFound} />
         </Switch>
       </ViewPort>
+      <DevSettings />
     </>
   );
 }
