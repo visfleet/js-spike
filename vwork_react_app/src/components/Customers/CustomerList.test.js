@@ -1,11 +1,16 @@
-import React from "react";
 import { shallow } from "enzyme";
+import { useState } from "react";
 
 import useData from "../../hooks/useData";
 
 import CustomerList from "./CustomerList";
 
+const React = jest.requireActual("react");
+jest.mock("react");
 jest.mock("../../hooks/useData");
+beforeEach(() => {
+  useState.mockReturnValue([1]);
+});
 
 it("renders without data", () => {
   useData.mockReturnValue(null);
@@ -14,14 +19,17 @@ it("renders without data", () => {
 
 it("renders with data", () => {
   useData.mockReturnValue({
-    customers: [
-      {
-        id: 1,
-        name: "John",
-        address: "18 Railway St",
-        jobs: [{ id: 1 }],
-      },
-    ],
+    customersPaged: {
+      totalPages: 5,
+      nodes: [
+        {
+          id: 1,
+          name: "John",
+          address: "18 Railway St",
+          jobs: [{ id: 1 }],
+        },
+      ],
+    },
   });
   shallow(<CustomerList />);
 });

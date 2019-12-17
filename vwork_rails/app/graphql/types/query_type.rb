@@ -42,6 +42,10 @@ module Types
       Customer.all
     end
 
+    paged_field :customers_paged, CustomerType do
+      Customer.all
+    end
+
     field :templates, [TemplateType], null: false
     def templates
       Template.all
