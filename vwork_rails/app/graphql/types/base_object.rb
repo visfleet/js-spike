@@ -1,14 +1,14 @@
 module Types
   class BaseObject < GraphQL::Schema::Object
-    def self.paged_field(field_name, object_type, default_per_page: 10, &block)
-      pagination_type_name = "#{object_type.graphql_name}PaginationType"
-      pagination_type = nil
+    def self.paged_field(field_name, node_type, default_per_page: 10, &block)
+      paged_type_name = "#{node_type.graphql_name}PaginationType"
+      paged_type = nil
 
-      if Types.const_defined?(pagination_type_name)
-        pagination_type = Types.const_get(pagination_type_name)
+      if Types.const_defined?(paged_type_name)
+        paged_type = Types.const_get(paged_type_name)
       else
-        pagination_type = Class.new(Types::BaseObject) do
-          graphql_name pagination_type_name
+        paged_type = Class.new(Types::BaseObject) do
+          graphql_name paged_type_name
 
           field :id, ID, null: false
           field :page, Integer, null: false
@@ -24,7 +24,7 @@ module Types
             [1, total_count.fdiv(per_page).ceil].max
           end
 
-          field :nodes, [object_type], null: false
+          field :nodes, [node_type], null: false
           def nodes
             scope.offset(page * per_page).limit(per_page)
           end
@@ -41,10 +41,10 @@ module Types
             object.fetch(:per_page)
           end
         end
-        Types.const_set(pagination_type_name, pagination_type)
+        Types.const_set(paged_type_name, paged_type)
       end
 
-      field field_name, pagination_type, null: false do
+      field field_name, paged_type, null: false do
         argument :page, Integer, required: false, default_value: 0
         argument :per_page, Integer, required: false, default_value: default_per_page
       end
