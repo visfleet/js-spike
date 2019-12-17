@@ -33,8 +33,11 @@ module Types
       Asset.all
     end
 
-    field :assets_connection, AssetType.connection_type, null: false
-    def assets_connection
+    paged_field :assets_paged, AssetType do
+      Asset.all
+    end
+
+    paged_field :a2assets_paged, AssetType do
       Asset.all
     end
 
