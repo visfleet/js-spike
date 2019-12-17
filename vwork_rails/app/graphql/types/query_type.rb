@@ -34,7 +34,13 @@ module Types
     end
 
     paged_field :assets_paged, AssetType do
-      Asset.all
+      argument :keyword, String, required: false, default_value: ''
+    end
+
+    def assets_paged_scope(keyword:)
+      assets = Asset.all
+      assets = assets.where('name LIKE ?', "%#{keyword}%") if keyword.present?
+      assets
     end
 
     field :customers, [CustomerType], null: false
@@ -42,7 +48,8 @@ module Types
       Customer.all
     end
 
-    paged_field :customers_paged, CustomerType do
+    paged_field :customers_paged, CustomerType
+    def customers_paged_scope
       Customer.all
     end
 

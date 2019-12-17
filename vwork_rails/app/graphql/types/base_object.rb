@@ -47,17 +47,18 @@ module Types
       field field_name, paged_type, null: false do
         argument :page, Integer, required: false, default_value: 0
         argument :per_page, Integer, required: false, default_value: default_per_page
+        instance_exec(&block) if block
       end
 
       define_method field_name do |args|
-        page = args.fetch(:page)
-        per_page = args.fetch(:per_page)
+        page = args.delete(:page)
+        per_page = args.delete(:per_page)
 
         {
           id: "#{field_name}-#{per_page}-#{page}",
           page: page,
           per_page: per_page,
-          scope: block.call
+          scope: args.keys.any? ? send("#{field_name}_scope", args) : send("#{field_name}_scope")
         }
       end
     end
