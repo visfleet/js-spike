@@ -37,10 +37,6 @@ module Types
       Asset.all
     end
 
-    paged_field :a2assets_paged, AssetType do
-      Asset.all
-    end
-
     field :customers, [CustomerType], null: false
     def customers
       Customer.all

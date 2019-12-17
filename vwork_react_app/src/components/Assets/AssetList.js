@@ -1,27 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import gql from "graphql-tag";
 
 import AppTable from "../../controls/AppTable";
 import useData from "../../hooks/useData";
+import Paginator from "../../controls/Paginator";
 
 export default function AssetList() {
-  const data = useData(gql`
-    query {
-      assets {
-        id
-        name
-        assetModel
-        customer {
+  const [page, pageSet] = useState(0);
+  const data = useData(
+    gql`
+      query($page: Int!) {
+        assetsPaged(page: $page, perPage: 20) {
           id
-          name
+          totalPages
+          nodes {
+            id
+            name
+            assetModel
+            customer {
+              id
+              name
+            }
+            jobs {
+              id
+            }
+            createdAt
+          }
         }
-        jobs {
-          id
-        }
-        createdAt
       }
-    }
-  `);
+    `,
+    { page },
+  );
 
   return (
     <>
@@ -35,9 +44,6 @@ export default function AssetList() {
             title: "Name",
           },
           {
-            title: "Model",
-          },
-          {
             title: "Customer",
           },
           {
@@ -48,7 +54,7 @@ export default function AssetList() {
             title: "Created At",
           },
         ]}
-        rows={data?.assets.map(asset => ({
+        rows={data?.assetsPaged.nodes.map(asset => ({
           key: asset.id,
           values: [
             asset.id,
@@ -59,6 +65,11 @@ export default function AssetList() {
             asset.createdAt,
           ],
         }))}
+      />
+      <Paginator
+        page={page}
+        totalPages={data?.assetsPaged.totalPages}
+        onPageChange={pageSet}
       />
     </>
   );
