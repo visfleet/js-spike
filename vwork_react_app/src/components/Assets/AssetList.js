@@ -7,10 +7,11 @@ import Paginator from "../../controls/Paginator";
 
 export default function AssetList() {
   const [page, pageSet] = useState(0);
+  const [keyword, keywordSet] = useState("");
   const data = useData(
     gql`
-      query($page: Int!) {
-        assetsPaged(page: $page, perPage: 20) {
+      query($page: Int!, $keyword: String!) {
+        assetsPaged(page: $page, perPage: 20, keyword: $keyword) {
           id
           totalPages
           nodes {
@@ -29,11 +30,17 @@ export default function AssetList() {
         }
       }
     `,
-    { page },
+    { page, keyword },
   );
 
   return (
     <>
+      <input
+        type="text"
+        placeholder="keyword"
+        value={keyword}
+        onChange={event => keywordSet(event.currentTarget.value)}
+      />
       <AppTable
         columns={[
           {
