@@ -6,7 +6,7 @@ services:
     ports: 
       - "3000"
     links:
-      - "80"
+      - db
     environment:
       - 'DISABLE_DATABASE_ENVIRONMENT_CHECK=1'
     command: bin/reset_and_server.sh
