@@ -7,7 +7,7 @@ namespace :fake do
   desc 'TODO'
   task createjobsd: :environment do
     loop do
-      sleep Random.rand(60)
+      sleep Random.rand(5)
       Job.create_fake!
     end
   end
