@@ -51,6 +51,9 @@ export default function AssetList() {
             title: "Name",
           },
           {
+            title: "Model",
+          },
+          {
             title: "Customer",
           },
           {
