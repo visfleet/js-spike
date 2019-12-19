@@ -28,6 +28,11 @@ module Types
       Job.all
     end
 
+    paged_field :jobs_paged, JobType
+    def jobs_paged_scope
+      Job.all
+    end
+
     field :assets, [AssetType], null: false
     def assets
       Asset.all

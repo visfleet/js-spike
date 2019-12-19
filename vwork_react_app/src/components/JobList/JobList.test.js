@@ -14,12 +14,16 @@ it("renders without data", () => {
 
 it("renders with data", () => {
   useData.mockReturnValue({
-    jobs: [
-      {
-        id: 1,
-        templateName: "foo",
-      },
-    ],
+    jobsPaged: {
+      id: 1,
+      totalPages: 2,
+      nodes: [
+        {
+          id: 1,
+          templateName: "foo",
+        },
+      ],
+    },
   });
   shallow(<JobList />);
 });
