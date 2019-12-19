@@ -24,4 +24,30 @@ class Job < ApplicationRecord
   has_many :assets, through: :job_assets
   belongs_to :customer, optional: true, inverse_of: :jobs
   belongs_to :worker, optional: true, inverse_of: :jobs
+
+  def self.create_fake!
+    Job.create!(
+      customer: [*Customer.all, nil].sample,
+      worker: [Worker.all.sample, nil].sample,
+      template_name: [*Template.all, nil].sample.try(&:name) || '',
+      state: 'DRAFT',
+      planned_start_time: Faker::Time.forward(days: 5),
+      steps: 3.times.map do |step_index|
+        Step.new(
+          name: "Step #{step_index + 1}",
+          address: Faker::Address.full_address
+        )
+      end,
+      assets: [*Asset.all, *(20.times.map { nil })].sample(3).compact,
+      custom_fields: 3.times.map do |custom_field_index|
+        CustomField.new(
+          name: "Custom Field #{custom_field_index + 1}",
+          field_type: %w[Text Number Checkbox].sample,
+          value: Faker::Address.full_address
+        )
+      end
+    ).tap do |job|
+      puts "Created Job##{job.id}."
+    end
+  end
 end

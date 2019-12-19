@@ -7,9 +7,15 @@ services:
       - "3000"
     links:
       - db
+    command: bundle exec rails s
+  vwork_rails_migrate:
+    build: .
+    restart: on-failure
+    links:
+      - db
     environment:
       - 'DISABLE_DATABASE_ENVIRONMENT_CHECK=1'
-    command: bin/reset_and_server.sh
+    command: bin/reset_and_fake.sh
   db:
     image: postgres:12
     environment:

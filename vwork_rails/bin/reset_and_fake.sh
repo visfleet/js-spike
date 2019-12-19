@@ -2,4 +2,4 @@
 set -e
 
 bundle exec rake db:reset
-bundle exec rails server
+bundle exec rake fake:createjobsd
