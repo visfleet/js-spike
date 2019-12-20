@@ -44,7 +44,7 @@ module Types
 
     def assets_paged_scope(keyword:)
       assets = Asset.all
-      assets = assets.where('name LIKE ?', "%#{keyword}%") if keyword.present?
+      assets = assets.where('name ILIKE ?', "%#{keyword}%") if keyword.present?
       assets
     end
 
