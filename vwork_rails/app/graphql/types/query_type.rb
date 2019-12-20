@@ -30,7 +30,7 @@ module Types
 
     paged_field :jobs_paged, JobType
     def jobs_paged_scope
-      Job.all
+      Job.all.order(created_at: :desc)
     end
 
     field :assets, [AssetType], null: false
