@@ -10,7 +10,7 @@ export default function ViewPort({ navItems = [], children }) {
     <>
       <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="navbar-inner">
-          <div className="container">
+          <div className="container-fluid">
             <a className="brand" href="/">
               vWork
             </a>
@@ -33,7 +33,7 @@ export default function ViewPort({ navItems = [], children }) {
           </div>
         </div>
       </div>
-      <div className="container" style={{ paddingTop: 50 }}>
+      <div className="container-fluid" style={{ paddingTop: 50 }}>
         {children}
       </div>
     </>
