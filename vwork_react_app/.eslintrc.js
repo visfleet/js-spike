@@ -12,10 +12,27 @@ module.exports = {
       "error",
       {
         "newlines-between": "always",
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "unknown",
+          "parent",
+          "sibling",
+          "index",
+        ],
       },
     ],
     // Enforce prop-types
     "react/prop-types": ["error", {}],
     "react/no-unused-prop-types": ["error"],
+  },
+  settings: {
+    "import/resolver": {
+      "babel-plugin-root-import": {
+        rootPathPrefix: "~",
+        rootPathSuffix: "src",
+      },
+    },
   },
 };

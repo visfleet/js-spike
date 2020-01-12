@@ -23,6 +23,11 @@ module Types
     define_record_field(Customer, CustomerType)
     define_record_field(Asset, AssetType)
 
+    field :setting, SettingType, null: false
+    def setting
+      Setting.first_or_create!
+    end
+
     field :jobs, [JobType], null: false
     def jobs
       Job.all

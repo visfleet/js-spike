@@ -11,7 +11,7 @@ export default function ViewPort({ navItems = [], children }) {
       <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="navbar-inner">
           <div className="container-fluid">
-            <a className="brand" href="/">
+            <a className="brand" href="/#">
               vWork
             </a>
             <div className="nav-collapse collapse">

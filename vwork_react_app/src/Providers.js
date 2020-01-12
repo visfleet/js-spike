@@ -22,7 +22,7 @@ export default function Providers({ children }) {
       />
       <InitProvider>
         <ApolloProvider client={apolloClient}>
-          <HashRouter>{children}</HashRouter>
+          <HashRouter hashType="noslash">{children}</HashRouter>
         </ApolloProvider>
       </InitProvider>
     </>

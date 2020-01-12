@@ -1,5 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import gql from "graphql-tag";
+
+import useData from "~/hooks/useData";
 
 import ViewPort from "./controls/ViewPort";
 import JobList from "./components/JobList/JobList";
@@ -12,17 +15,35 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import DevSettings from "./DevSettings";
 
 function App() {
+  const data = useData(gql`
+    query {
+      setting {
+        id
+        enableJobs
+        enableSchedule
+        enableAssets
+        enableCustomers
+      }
+    }
+  `);
+
   return (
     <>
       <ViewPort
         navItems={[
-          { title: "Schedule", href: "/#/schedule" },
-          { title: "Jobs", href: "/#/jobs" },
-          { title: "Map", href: "/#/map" },
-          { title: "Customers", href: "/#/customers" },
-          { title: "Assets", href: "/#/assets" },
-          { title: "Settings", href: "/#/admin" },
-        ]}
+          data?.setting.enableSchedule && {
+            title: "Schedule",
+            href: "/#schedule",
+          },
+          data?.setting.enableJobs && { title: "Jobs", href: "/#jobs" },
+          data?.setting.enableSchedule && { title: "Map", href: "/#map" },
+          data?.setting.enableCustomers && {
+            title: "Customers",
+            href: "/#customers",
+          },
+          data?.setting.enableAssets && { title: "Assets", href: "/#assets" },
+          { title: "Settings", href: "/#admin" },
+        ].filter(i => i)}
       >
         <Switch>
           <Route exact path="/jobs" component={JobList} />
