@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import useData from "../../hooks/useData";
+import useData from "~/hooks/useData";
 
 import JobList from "./JobList";
 
@@ -15,15 +15,17 @@ it("renders without data", () => {
 it("renders with data", () => {
   useData.mockReturnValue({
     jobsPaged: {
-      id: 1,
       totalPages: 2,
       nodes: [
         {
-          id: 1,
-          templateName: "foo",
+          id: "1",
         },
       ],
     },
+    setting: {
+      jobListColumns: ["Job ID"],
+    },
   });
+
   shallow(<JobList />);
 });

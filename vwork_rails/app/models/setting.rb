@@ -13,4 +13,5 @@
 #
 
 class Setting < ApplicationRecord
+  serialize :job_list_columns
 end

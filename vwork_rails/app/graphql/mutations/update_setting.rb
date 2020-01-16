@@ -2,6 +2,7 @@ module Mutations
   class UpdateSetting < BaseMutation
     field :setting, Types::SettingType, null: false
 
+    argument :job_list_columns, [String], required: false
     argument :enable_schedule, Boolean, required: false
     argument :enable_assets, Boolean, required: false
     argument :enable_customers, Boolean, required: false
@@ -9,11 +10,11 @@ module Mutations
 
     def resolve(args)
       setting = Setting.first_or_create!
-      setting.update!(
-        args
-      )
+      setting.update!(args)
 
-      { setting: setting }
+      {
+        setting: setting
+      }
     end
   end
 end
