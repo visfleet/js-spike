@@ -30,7 +30,15 @@ class Job < ApplicationRecord
       customer: [*Customer.all, nil].sample,
       worker: [Worker.all.sample, nil].sample,
       template_name: [*Template.all, nil].sample.try(&:name) || '',
-      state: 'DRAFT',
+      state: %w[
+        DRAFT
+        PENDING
+        ASSIGNED
+        STARTED
+        FINISHED
+        CANCELLED
+        DENIED
+      ].sample,
       planned_start_time: Faker::Time.forward(days: 5),
       steps: 3.times.map do |step_index|
         Step.new(
