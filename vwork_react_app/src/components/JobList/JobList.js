@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import gql from "graphql-tag";
 
 import useData from "~/hooks/useData";
+import useRouteState from "~/hooks/useRouteState";
 import Paginator from "~/controls/Paginator";
 
 import allColumns, { defaultColumns } from "./allColumns";
@@ -9,8 +10,11 @@ import ValueCell from "./ValueCell";
 import CustomizeDialog from "./CustomizeDialog";
 
 export default function JobList() {
-  const [page, pageSet] = useState(0);
-  const [customizeDialogOpen, customizeDialogOpenSet] = useState(false);
+  const [page, pageSet] = useRouteState("page", 0);
+  const [customizeDialogOpen, customizeDialogOpenSet] = useRouteState(
+    "customize_dialog",
+    false,
+  );
   const data = useData(
     gql`
       query($page: Int!) {
@@ -42,8 +46,11 @@ export default function JobList() {
         onClose={() => customizeDialogOpenSet(false)}
       />
       <div className="btn-toolbar">
+        <button className="btn disabled">Filters:</button>
+      </div>
+      <div className="btn-toolbar">
         <button className="btn" onClick={() => customizeDialogOpenSet(true)}>
-          Config
+          Customise
         </button>
       </div>
       <table className="table table-bordered table-hover">

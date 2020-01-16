@@ -44,7 +44,7 @@ const apolloClient = new ApolloClient({
     }),
     new BatchHttpLink({
       fetch,
-      batchMax: 50,
+      batchMax: 100,
     }),
   ]),
   cache,
