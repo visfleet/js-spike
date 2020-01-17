@@ -43,6 +43,11 @@ module Types
       Asset.all
     end
 
+    field :workers, [WorkerType], null: false
+    def workers
+      Worker.all
+    end
+
     paged_field :assets_paged, AssetType do
       argument :keyword, String, required: false, default_value: ''
     end
