@@ -2,14 +2,9 @@ module.exports = {
   presets: ["babel-preset-react-app"],
   plugins: [
     [
-      "babel-plugin-root-import",
+      "module-resolver",
       {
-        paths: [
-          {
-            rootPathSuffix: "./src",
-            rootPathPrefix: "~/",
-          },
-        ],
+        root: ["./src"],
       },
     ],
   ],

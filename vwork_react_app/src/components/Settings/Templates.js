@@ -1,8 +1,8 @@
 import React from "react";
 import gql from "graphql-tag";
 
-import useData from "../../hooks/useData";
-import AppTable from "../../controls/AppTable";
+import useData from "hooks/useData";
+import AppTable from "controls/AppTable";
 
 export default function Templates() {
   const data = useData(gql`

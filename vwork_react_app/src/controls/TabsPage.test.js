@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import useParams from "../hooks/useParams";
+import useParams from "hooks/useParams";
 
 import TabsPage from "./TabsPage";
 
-jest.mock("../hooks/useParams");
+jest.mock("hooks/useParams");
 
 it("renders", () => {
   useParams.mockReturnValue({

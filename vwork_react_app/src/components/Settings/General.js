@@ -1,8 +1,8 @@
 import React from "react";
 import gql from "graphql-tag";
 
-import useData from "~/hooks/useData";
-import useAction from "~/hooks/useAction";
+import useData from "hooks/useData";
+import useAction from "hooks/useAction";
 
 export default function General() {
   const data = useData(gql`

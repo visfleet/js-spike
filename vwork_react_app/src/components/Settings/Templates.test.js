@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import useData from "../../hooks/useData";
+import useData from "hooks/useData";
 
 import Templates from "./Templates";
 
-jest.mock("../../hooks/useData");
+jest.mock("hooks/useData");
 
 it("renders without data", () => {
   useData.mockReturnValue();

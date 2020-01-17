@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
 
-import Dialog from "~/controls/Dialog";
-import useData from "~/hooks/useData";
-import useAction from "~/hooks/useAction";
+import Dialog from "controls/Dialog";
+import useData from "hooks/useData";
+import useAction from "hooks/useAction";
 
 import useColumns from "./useColumns";
 

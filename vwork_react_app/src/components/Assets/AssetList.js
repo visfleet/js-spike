@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 
-import AppTable from "../../controls/AppTable";
-import useData from "../../hooks/useData";
-import Paginator from "../../controls/Paginator";
+import AppTable from "controls/AppTable";
+import useData from "hooks/useData";
+import Paginator from "controls/Paginator";
 
 export default function AssetList() {
   const [page, pageSet] = useState(0);

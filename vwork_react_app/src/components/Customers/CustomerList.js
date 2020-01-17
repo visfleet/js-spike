@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 
-import AppTable from "../../controls/AppTable";
-import Paginator from "../../controls/Paginator";
-import useData from "../../hooks/useData";
+import AppTable from "controls/AppTable";
+import Paginator from "controls/Paginator";
+import useData from "hooks/useData";
 
 export default function CustomerList() {
   const [page, pageSet] = useState(0);

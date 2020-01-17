@@ -7,7 +7,7 @@ import { withClientState } from "apollo-link-state";
 import { onError } from "apollo-link-error";
 import { setContext } from "apollo-link-context";
 
-import sleep from "../services/sleep";
+import sleep from "services/sleep";
 
 import clientSchema, { clientSchemaState } from "./clientSchema";
 

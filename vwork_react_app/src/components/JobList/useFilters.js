@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 import _ from "lodash";
 
-import useData from "~/hooks/useData";
-import useRouteState from "~/hooks/useRouteState";
+import useData from "hooks/useData";
+import useRouteState from "hooks/useRouteState";
 
 export default function useFilters() {
   const data = useData(gql`

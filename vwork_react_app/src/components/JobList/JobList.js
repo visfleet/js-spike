@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 
-import useData from "~/hooks/useData";
-import useRouteState from "~/hooks/useRouteState";
-import Paginator from "~/controls/Paginator";
+import useData from "hooks/useData";
+import useRouteState from "hooks/useRouteState";
+import Paginator from "controls/Paginator";
 
 import useColumns from "./useColumns";
 import ValueCell from "./ValueCell";

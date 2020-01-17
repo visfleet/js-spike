@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-import useParams from "../hooks/useParams";
+import useParams from "hooks/useParams";
 
 export default function TabsPage({ tabs, tabParamName = "tab" }) {
   const { [tabParamName]: currentTabName, pathnameForParams } = useParams();

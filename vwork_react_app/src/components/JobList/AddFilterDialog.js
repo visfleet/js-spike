@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import moment from "moment";
 import PropType from "prop-types";
 
-import Dialog from "~/controls/Dialog";
+import Dialog from "controls/Dialog";
 
 import useFilters from "./useFilters";
 

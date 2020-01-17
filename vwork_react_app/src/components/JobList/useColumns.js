@@ -1,7 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 
-import useData from "~/hooks/useData";
+import useData from "hooks/useData";
 
 // render() is not a component
 /* eslint-disable react/prop-types */

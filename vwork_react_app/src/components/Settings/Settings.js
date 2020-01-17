@@ -1,6 +1,6 @@
 import React from "react";
 
-import TabsPage from "../../controls/TabsPage";
+import TabsPage from "controls/TabsPage";
 
 import General from "./General";
 import Templates from "./Templates";

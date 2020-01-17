@@ -1,13 +1,13 @@
 import { shallow } from "enzyme";
 import { useState } from "react";
 
-import useData from "../../hooks/useData";
+import useData from "hooks/useData";
 
 import CustomerList from "./CustomerList";
 
 const React = jest.requireActual("react");
 jest.mock("react");
-jest.mock("../../hooks/useData");
+jest.mock("hooks/useData");
 beforeEach(() => {
   useState.mockReturnValue([1]);
 });

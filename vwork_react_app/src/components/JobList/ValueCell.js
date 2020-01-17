@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import LabelLoader from "~/loaders/LabelLoader";
-import useData from "~/hooks/useData";
+import LabelLoader from "loaders/LabelLoader";
+import useData from "hooks/useData";
 
 export default function ValueCell({ column, jobId }) {
   const data = useData(column.query, {

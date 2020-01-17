@@ -1,13 +1,13 @@
 import { shallow } from "enzyme";
 import { useState, useEffect } from "react";
 
-import { initApolloClient } from "../services/apolloClient";
-import sleep from "../services/sleep";
+import { initApolloClient } from "services/apolloClient";
+import sleep from "services/sleep";
 
 import InitProvider from "./InitProvider";
 
 jest.mock("react");
-jest.mock("../services/apolloClient");
+jest.mock("services/apolloClient");
 const React = jest.requireActual("react");
 
 it("renders when loading", () => {

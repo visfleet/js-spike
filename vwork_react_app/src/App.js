@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import gql from "graphql-tag";
 
-import useData from "~/hooks/useData";
+import useData from "hooks/useData";
 
 import ViewPort from "./controls/ViewPort";
 import JobList from "./components/JobList/JobList";
