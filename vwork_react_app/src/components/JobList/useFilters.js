@@ -7,6 +7,10 @@ import useRouteState from "~/hooks/useRouteState";
 export default function useFilters() {
   const data = useData(gql`
     query {
+      setting {
+        id
+        enableCustomers
+      }
       workers {
         id
         name
@@ -48,7 +52,7 @@ export default function useFilters() {
         }),
       ),
     },
-    {
+    data?.setting.enableCustomers && {
       id: "customerIds",
       label: "Customers",
       type: "options",
@@ -84,7 +88,7 @@ export default function useFilters() {
       type: "datepicker",
       disabled: hasDateFilter,
     },
-  ];
+  ].filter(f => f);
 
   return {
     filters,
