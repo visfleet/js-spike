@@ -14,6 +14,7 @@ export default function useFilters() {
         id
         name
       }
+      jobStates
     }
   `);
   const [filtersState, filtersStateSet] = useRouteState("filters", {});
@@ -40,6 +41,15 @@ export default function useFilters() {
       options: (data?.templates || []).map(template => ({
         label: template.name,
         value: template.id,
+      })),
+    },
+    {
+      id: "states",
+      label: "Status",
+      type: "options",
+      options: (data?.jobStates || []).map(state => ({
+        label: state,
+        value: state,
       })),
     },
     {

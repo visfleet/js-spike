@@ -33,6 +33,11 @@ module Types
       Job.all
     end
 
+    field :job_states, [String], null: false
+    def job_states
+      Job.distinct.pluck(:state)
+    end
+
     paged_field :jobs_paged, JobType
     def jobs_paged_scope
       Job.all.order(created_at: :desc)
