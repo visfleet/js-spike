@@ -53,6 +53,13 @@ module Types
         jobs = jobs.where(customer_id: filter.customer_ids)
       end
       jobs = jobs.where(state: filter.states) if filter.states.any?
+      if filter.asset_ids.any?
+        jobs =
+          jobs
+          .where(
+            id: JobAsset.where(asset: filter.asset_ids).select(:job_id)
+          )
+      end
       if filter.date_eq
         jobs = jobs.where(
           'planned_start_time > ? AND planned_start_time < ?',

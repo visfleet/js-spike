@@ -10,8 +10,13 @@ export default function useFilters() {
       setting {
         id
         enableCustomers
+        enableAssets
       }
       workers {
+        id
+        name
+      }
+      assets {
         id
         name
       }
@@ -59,6 +64,15 @@ export default function useFilters() {
       options: (data?.customers || []).map(customer => ({
         label: customer.name,
         value: customer.id,
+      })),
+    },
+    data?.setting.enableAssets && {
+      id: "assetIds",
+      label: "Assets",
+      type: "options",
+      options: (data?.assets || []).map(asset => ({
+        label: asset.name,
+        value: asset.id,
       })),
     },
     {
