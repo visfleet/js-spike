@@ -9,14 +9,16 @@ import allColumns, { defaultColumns } from "./allColumns";
 import ValueCell from "./ValueCell";
 import CustomizeDialog from "./CustomizeDialog";
 import Filters from "./Filters";
+import useFilters from "./useFilters";
 
 export default function JobList() {
   const [page, pageSet] = useRouteState("page", 0);
   const [customizeDialogOpen, customizeDialogOpenSet] = useState(false);
+  const { filtersState } = useFilters();
   const data = useData(
     gql`
-      query($page: Int!) {
-        jobsPaged(page: $page, perPage: 25) {
+      query($page: Int!, $jobsFilter: JobsFilter!) {
+        jobsPaged(page: $page, perPage: 25, filter: $jobsFilter) {
           id
           totalPages
           nodes {
@@ -29,7 +31,10 @@ export default function JobList() {
         }
       }
     `,
-    { page },
+    {
+      page,
+      jobsFilter: filtersState,
+    },
   );
 
   const columns =

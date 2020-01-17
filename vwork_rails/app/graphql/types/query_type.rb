@@ -38,9 +38,42 @@ module Types
       Job.distinct.pluck(:state)
     end
 
-    paged_field :jobs_paged, JobType
-    def jobs_paged_scope
-      Job.all.order(created_at: :desc)
+    paged_field :jobs_paged, JobType do
+      argument :filter, JobsFilterType, required: true
+    end
+    def jobs_paged_scope(
+      filter:
+    )
+      jobs = Job.all.order(created_at: :desc)
+      if filter.template_names.any?
+        jobs = jobs.where(template_name: filter.template_names)
+      end
+      jobs = jobs.where(worker_id: filter.worker_ids) if filter.worker_ids.any?
+      if filter.customer_ids.any?
+        jobs = jobs.where(customer_id: filter.customer_ids)
+      end
+      jobs = jobs.where(state: filter.states) if filter.states.any?
+      if filter.date_eq
+        jobs = jobs.where(
+          'planned_start_time > ? AND planned_start_time < ?',
+          filter.date_eq.beginning_of_day,
+          filter.date_eq.end_of_day
+        )
+      end
+      if filter.date_gt
+        jobs = jobs.where(
+          'planned_start_time > ?',
+          filter.date_gt.beginning_of_day
+        )
+      end
+      if filter.date_lt
+        jobs = jobs.where(
+          'planned_start_time < ?',
+          filter.date_gt.end_of_day
+        )
+      end
+
+      jobs
     end
 
     field :assets, [AssetType], null: false

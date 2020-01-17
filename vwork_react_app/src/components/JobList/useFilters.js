@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import _ from "lodash";
 
 import useData from "~/hooks/useData";
 import useRouteState from "~/hooks/useRouteState";
@@ -20,13 +21,11 @@ export default function useFilters() {
   const [filtersState, filtersStateSet] = useRouteState("filters", {});
 
   const hasDateFilter =
-    !!filtersState["date_lt"] ||
-    !!filtersState["date_eq"] ||
-    !!filtersState["date_gt"];
+    !!filtersState.dateLt || !!filtersState.dateEq || !!filtersState.dateGt;
 
   const filters = [
     {
-      id: "worker_ids",
+      id: "workerIds",
       label: "Workers",
       type: "options",
       options: (data?.workers || []).map(worker => ({
@@ -35,13 +34,15 @@ export default function useFilters() {
       })),
     },
     {
-      id: "template_ids",
+      id: "templateNames",
       label: "Templates",
       type: "options",
-      options: (data?.templates || []).map(template => ({
-        label: template.name,
-        value: template.id,
-      })),
+      options: _.uniq((data?.templates || []).map(t => t.name)).map(
+        templateName => ({
+          label: templateName,
+          value: templateName,
+        }),
+      ),
     },
     {
       id: "states",
@@ -53,19 +54,19 @@ export default function useFilters() {
       })),
     },
     {
-      id: "date_eq",
+      id: "dateEq",
       label: "On",
       type: "datepicker",
       disabled: hasDateFilter,
     },
     {
-      id: "date_lt",
+      id: "dateLt",
       label: "Before",
       type: "datepicker",
       disabled: hasDateFilter,
     },
     {
-      id: "date_gt",
+      id: "dateGt",
       label: "After",
       type: "datepicker",
       disabled: hasDateFilter,
