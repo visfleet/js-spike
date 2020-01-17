@@ -5,13 +5,14 @@ import useData from "~/hooks/useData";
 import useRouteState from "~/hooks/useRouteState";
 import Paginator from "~/controls/Paginator";
 
-import allColumns, { defaultColumns } from "./allColumns";
+import useColumns from "./useColumns";
 import ValueCell from "./ValueCell";
 import CustomizeDialog from "./CustomizeDialog";
 import Filters from "./Filters";
 import useFilters from "./useFilters";
 
 export default function JobList() {
+  const { columns } = useColumns();
   const [page, pageSet] = useRouteState("page", 0);
   const [customizeDialogOpen, customizeDialogOpenSet] = useState(false);
   const { filtersState } = useFilters();
@@ -25,10 +26,6 @@ export default function JobList() {
             id
           }
         }
-        setting {
-          id
-          jobListColumns
-        }
       }
     `,
     {
@@ -36,11 +33,6 @@ export default function JobList() {
       jobsFilter: filtersState,
     },
   );
-
-  const columns =
-    data?.setting.jobListColumns.map(columnLabel =>
-      allColumns.find(c => c.label === columnLabel),
-    ) || defaultColumns;
 
   return (
     <>

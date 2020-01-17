@@ -6,9 +6,10 @@ import Dialog from "~/controls/Dialog";
 import useData from "~/hooks/useData";
 import useAction from "~/hooks/useAction";
 
-import allColumns from "./allColumns";
+import useColumns from "./useColumns";
 
 export default function CustomizeDialog({ open, onClose }) {
+  const { columns, allColumns } = useColumns();
   const data = useData(
     gql`
       query {
@@ -43,11 +44,6 @@ export default function CustomizeDialog({ open, onClose }) {
       },
     }),
   );
-
-  const columns =
-    data?.setting.jobListColumns.map(columnLabel =>
-      allColumns.find(c => c.label === columnLabel),
-    ) || [];
 
   const newColumnLabel = (
     allColumns.find(c => !data?.setting.jobListColumns.includes(c.label)) ||
