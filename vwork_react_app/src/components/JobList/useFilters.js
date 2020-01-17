@@ -15,6 +15,10 @@ export default function useFilters() {
         id
         name
       }
+      customers {
+        id
+        name
+      }
       jobStates
     }
   `);
@@ -43,6 +47,15 @@ export default function useFilters() {
           value: templateName,
         }),
       ),
+    },
+    {
+      id: "customerIds",
+      label: "Customers",
+      type: "options",
+      options: (data?.customers || []).map(customer => ({
+        label: customer.name,
+        value: customer.id,
+      })),
     },
     {
       id: "states",
