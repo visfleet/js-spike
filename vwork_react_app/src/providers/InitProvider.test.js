@@ -1,32 +1,20 @@
-import { shallow } from "enzyme";
-import { useState, useEffect } from "react";
+import React from "react";
+import { act } from "react-dom/test-utils";
+import { mount } from "enzyme";
 
 import { initApolloClient } from "services/apolloClient";
-import sleep from "services/sleep";
+import { initClientSchema } from "services/clientSchema";
 
 import InitProvider from "./InitProvider";
 
-jest.mock("react");
 jest.mock("services/apolloClient");
-const React = jest.requireActual("react");
+jest.mock("services/clientSchema");
 
-it("renders when loading", () => {
-  useState.mockReturnValue([false]);
-  shallow(<InitProvider>APP</InitProvider>);
-});
-
-it("renders when loaded", () => {
-  useState.mockReturnValue([true]);
-  shallow(<InitProvider>APP</InitProvider>);
-});
-
-it("call initFunc", async () => {
-  const initedSet = jest.fn();
-  useState.mockReturnValue([true, initedSet]);
-  useEffect.mockImplementation(fn => {
-    fn();
+it("renders when loading", async () => {
+  // InitProvider use lifecycle, shallow rendering won't work
+  await act(async () => {
+    mount(<InitProvider>APP</InitProvider>);
   });
-  shallow(<InitProvider>APP</InitProvider>);
-  await sleep(0);
   expect(initApolloClient.mock.calls.length).toEqual(1);
+  expect(initClientSchema.mock.calls.length).toEqual(1);
 });
