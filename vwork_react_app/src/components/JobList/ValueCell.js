@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import LabelLoader from "loaders/LabelLoader";
 import useData from "hooks/useData";
 
-export default function ValueCell({ column, jobId, jobData }) {
+export default function ValueCell({ column, jobId }) {
   const data = useData(column.query, {
     jobId,
   });
@@ -12,7 +12,7 @@ export default function ValueCell({ column, jobId, jobData }) {
   return (
     <>
       {!data && <LabelLoader />}
-      {!!data && column.render(data, jobData)}
+      {!!data && column.render(data)}
     </>
   );
 }
@@ -23,5 +23,4 @@ ValueCell.propTypes = {
     render: PropTypes.func.isRequired,
     query: PropTypes.object.isRequired,
   }),
-  jobData: PropTypes.object.isRequired,
 };
