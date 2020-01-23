@@ -22,14 +22,13 @@ export default function useColumns() {
   const allColumns = [
     {
       label: "Job ID",
-      query: gql`
-        query($jobId: ID!) {
-          job(id: $jobId) {
-            id
-          }
+      fragment: gql`
+        fragment JOB_ID_FRAGMENT on Job {
+          id
         }
       `,
-      render: ({ job }) => job.id,
+      fragmentName: "JOB_ID_FRAGMENT",
+      render: (data, job) => job.id,
     },
     {
       label: "Status",

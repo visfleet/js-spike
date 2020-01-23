@@ -16,6 +16,7 @@ export default function JobList() {
   const [page, pageSet] = useRouteState("page", 0);
   const [customizeDialogOpen, customizeDialogOpenSet] = useState(false);
   const { filtersState } = useFilters();
+
   const data = useData(
     gql`
       query($page: Int!, $jobsFilter: JobsFilter!) {
@@ -24,9 +25,19 @@ export default function JobList() {
           totalPages
           nodes {
             id
+            ${columns
+              .map(c => c.fragmentName)
+              .filter(n => n)
+              .map(fragmentName => `...${fragmentName}`)
+              .join(",")}
           }
         }
       }
+      ${columns
+        .map(c => c.fragment)
+        .filter(c => c)
+        .map(c => c.loc.source.body)
+        .join("\n")}
     `,
     {
       page,
@@ -59,7 +70,10 @@ export default function JobList() {
             <tr key={job.id}>
               {columns.map((column, columnIndex) => (
                 <td key={columnIndex}>
-                  <ValueCell jobId={job.id} column={column} />
+                  {!column.query && column.render(null, job)}
+                  {column.query && (
+                    <ValueCell jobId={job.id} column={column} jobData={job} />
+                  )}
                 </td>
               ))}
             </tr>
