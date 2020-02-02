@@ -7,6 +7,8 @@ module.exports = {
   rules: {
     // Opt-out because we are using hash router
     "jsx-a11y/anchor-is-valid": "off",
+    // Often false-positive
+    "react-hooks/exhaustive-deps": "off",
     // Enforce import order
     "import/order": [
       "error",

@@ -32,7 +32,7 @@ export default function General() {
     }
   `);
 
-  const { handleSubmit, register, formState } = useForm();
+  const { handleSubmit, register } = useForm();
 
   if (!data) return null;
 
@@ -52,7 +52,6 @@ export default function General() {
             name="enableJobs"
             type="checkbox"
             ref={register()}
-            readOnly={!data}
             defaultChecked={!!data?.setting.enableJobs}
           />
           Enable Jobs
@@ -71,7 +70,7 @@ export default function General() {
             name="enableAssets"
             type="checkbox"
             ref={register()}
-            defaultChecked={!!data.setting.enableAssets}
+            defaultChecked={!!data?.setting.enableAssets}
           />
           Enable Assets
         </label>
@@ -80,17 +79,12 @@ export default function General() {
             type="checkbox"
             name="enableCustomers"
             ref={register()}
-            defaultChecked={!!data.setting.enableCustomers}
+            defaultChecked={!!data?.setting.enableCustomers}
           />
           Enable Customers
         </label>
         <div className="btn-toolbar">
-          <button disabled={!formState.dirty} className="btn btn-primary">
-            Save
-          </button>
-          <button className="btn" type="reset">
-            Reset
-          </button>
+          <button className="btn btn-primary">Save</button>
         </div>
       </form>
     </>
