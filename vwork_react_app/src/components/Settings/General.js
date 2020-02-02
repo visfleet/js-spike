@@ -1,5 +1,6 @@
 import React from "react";
 import gql from "graphql-tag";
+import { useForm } from "react-hook-form";
 
 import useData from "hooks/useData";
 import useAction from "hooks/useAction";
@@ -31,64 +32,69 @@ export default function General() {
     }
   `);
 
+  const { handleSubmit, register, formState } = useForm();
+
+  if (!data) return null;
+
   return (
     <>
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={!!data?.setting.enableJobs}
-          onChange={event =>
+      <form
+        onSubmit={handleSubmit(
+          data =>
+            console.log({ data }) ||
             updateSetting({
               input: {
-                enableJobs: event.currentTarget.checked,
+                ...data,
               },
-            })
-          }
-        />
-        Enable Jobs
-      </label>
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={!!data?.setting.enableSchedule}
-          onChange={event =>
-            updateSetting({
-              input: {
-                enableSchedule: event.currentTarget.checked,
-              },
-            })
-          }
-        />
-        Enable Schedule
-      </label>
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={!!data?.setting.enableAssets}
-          onChange={event =>
-            updateSetting({
-              input: {
-                enableAssets: event.currentTarget.checked,
-              },
-            })
-          }
-        />
-        Enable Assets
-      </label>
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={!!data?.setting.enableCustomers}
-          onChange={event =>
-            updateSetting({
-              input: {
-                enableCustomers: event.currentTarget.checked,
-              },
-            })
-          }
-        />
-        Enable Customers
-      </label>
+            }),
+        )}
+      >
+        <label className="checkbox">
+          <input
+            name="enableJobs"
+            type="checkbox"
+            ref={register()}
+            readOnly={!data}
+            defaultChecked={!!data?.setting.enableJobs}
+          />
+          Enable Jobs
+        </label>
+        <label className="checkbox">
+          <input
+            type="checkbox"
+            name="enableSchedule"
+            ref={register()}
+            defaultChecked={!!data?.setting.enableSchedule}
+          />
+          Enable Schedule
+        </label>
+        <label className="checkbox">
+          <input
+            name="enableAssets"
+            type="checkbox"
+            ref={register()}
+            defaultChecked={!!data.setting.enableAssets}
+          />
+          Enable Assets
+        </label>
+        <label className="checkbox">
+          <input
+            type="checkbox"
+            name="enableCustomers"
+            ref={register()}
+            defaultChecked={!!data.setting.enableCustomers}
+          />
+          Enable Customers
+        </label>
+        <div className="btn-toolbar">
+          <button disabled={!formState.dirty} className="btn btn-primary">
+            Save
+          </button>
+          <button className="btn" type="reset">
+            Reset
+          </button>
+        </div>
+      </form>
     </>
   );
 }
