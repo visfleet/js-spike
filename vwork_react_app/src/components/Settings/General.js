@@ -39,14 +39,12 @@ export default function General() {
   return (
     <>
       <form
-        onSubmit={handleSubmit(
-          data =>
-            console.log({ data }) ||
-            updateSetting({
-              input: {
-                ...data,
-              },
-            }),
+        onSubmit={handleSubmit(data =>
+          updateSetting({
+            input: {
+              ...data,
+            },
+          }),
         )}
       >
         <label className="checkbox">
